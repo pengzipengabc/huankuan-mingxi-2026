@@ -29,6 +29,7 @@ const records = [
   [28, "20260924", 36980, "公账", 0.915, 33836.7, "按 0.915 折算"],
 ].map(([id, date, raw, method, factor, adjusted, note]) => ({ id, date, raw, method, factor, adjusted, note }));
 
+function initializeLegacyView() {
 const money = new Intl.NumberFormat("zh-CN", { style: "currency", currency: "CNY", minimumFractionDigits: 2 });
 const rowsEl = document.querySelector("#ledgerRows");
 const searchInput = document.querySelector("#searchInput");
@@ -85,3 +86,4 @@ sortButton.addEventListener("click", () => {
 });
 
 render();
+}
