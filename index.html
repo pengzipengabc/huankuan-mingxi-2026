@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#123f5b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="还款明细" />
+    <meta name="description" content="2026年货款还款明细与折算汇总" />
+    <title>2026年货款还款明细</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">2026 · 货款记录</p>
+          <h1>还款明细</h1>
+          <p class="hero-copy">按日期记录每笔还款，并依据公账折算系数自动核算。</p>
+        </div>
+        <a class="download-button" href="./2026年货款还款明细.xlsx" download>
+          <span aria-hidden="true">↓</span>
+          下载 Excel
+        </a>
+      </header>
+
+      <main>
+        <section class="summary-grid" aria-label="还款汇总">
+          <article class="summary-card summary-card--primary">
+            <span class="summary-label">折算后还款总额</span>
+            <strong id="adjustedTotal">¥275,382.70</strong>
+            <span class="summary-note">按各笔折算系数计算</span>
+          </article>
+          <article class="summary-card">
+            <span class="summary-label">原始金额合计</span>
+            <strong id="rawTotal">¥285,360.00</strong>
+            <span class="summary-note">共 <b id="recordCount">28</b> 笔</span>
+          </article>
+          <article class="summary-card">
+            <span class="summary-label">折算差额</span>
+            <strong id="differenceTotal">¥9,977.30</strong>
+            <span class="summary-note">原始金额减折算金额</span>
+          </article>
+        </section>
+
+        <section class="ledger-section" aria-labelledby="ledgerTitle">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">明细账</p>
+              <h2 id="ledgerTitle">全部还款记录</h2>
+            </div>
+            <button id="sortButton" class="sort-button" type="button" aria-label="切换日期排序">
+              日期正序 <span aria-hidden="true">↑</span>
+            </button>
+          </div>
+
+          <div class="controls">
+            <label class="search-box">
+              <span class="sr-only">搜索日期、付款方式或备注</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.2-4.2m1.2-5.3a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z" /></svg>
+              <input id="searchInput" type="search" inputmode="search" placeholder="搜索日期、方式或备注" autocomplete="off" />
+            </label>
+            <div class="filter-tabs" role="group" aria-label="按付款方式筛选">
+              <button class="filter-tab is-active" type="button" data-filter="全部">全部</button>
+              <button class="filter-tab" type="button" data-filter="微信">微信</button>
+              <button class="filter-tab" type="button" data-filter="公账">公账</button>
+              <button class="filter-tab" type="button" data-filter="未注明">未注明</button>
+            </div>
+          </div>
+
+          <div class="result-bar" aria-live="polite">
+            <span id="resultText">显示 28 笔记录</span>
+            <span id="filteredTotal">折算合计 ¥275,382.70</span>
+          </div>
+
+          <div class="ledger-table" role="table" aria-label="还款明细表">
+            <div class="ledger-head" role="row">
+              <span role="columnheader">日期</span>
+              <span role="columnheader">付款方式</span>
+              <span role="columnheader">原始金额</span>
+              <span role="columnheader">折算系数</span>
+              <span role="columnheader">计入金额</span>
+              <span role="columnheader">备注</span>
+            </div>
+            <div id="ledgerRows" class="ledger-rows"></div>
+          </div>
+
+          <div id="emptyState" class="empty-state" hidden>
+            <strong>没有找到匹配记录</strong>
+            <span>请换一个搜索词或筛选条件。</span>
+          </div>
+        </section>
+
+        <section class="method-note" aria-label="计算说明">
+          <div class="note-mark" aria-hidden="true">i</div>
+          <div>
+            <strong>计算说明</strong>
+            <p>折算系数为 0.915 的公账款按原始金额 × 0.915 计入，其余记录按原金额计入。</p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span>数据截至 2026年9月24日</span>
+        <span>金额单位：人民币元</span>
+      </footer>
+    </div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
